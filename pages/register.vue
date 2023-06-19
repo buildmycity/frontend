@@ -80,9 +80,9 @@ const { $directus } = useNuxtApp()
 const email = ref('')
 const selectedRole = ref(null)
 const roleOptions = [
-  { id: '0bd42dcf-4815-4be1-8319-113c3dd77eba', name: 'Architect' },
-  { id: '46f6eb68-4724-48cc-bb00-0cc23f6d2950', name: 'Builder' },
-  { id: 'b1615993-a5f6-4e71-9f9d-afae444b6c2c', name: 'Investor' },
+  { id: '49b3eb01-a1b2-4bd5-8ed1-12a91fd48efc', name: 'Architect' },
+  { id: 'b20a40cd-1a68-4638-a845-67573309731f', name: 'Builder' },
+  { id: '36504faa-ee42-456b-864c-e5da874a8b8f', name: 'Citizen' },
   // Add more role options as needed
 ]
 
