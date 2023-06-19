@@ -1,6 +1,6 @@
 <template>
-  <ClientOnly fallback-tag="span" fallback="Loading blog_post...">
-    <div v-if="blog_post.status === 'published'" class="max-w-3xl px-6 py-12 mx-auto space-y-8">
+  <ClientOnly fallback-tag="span" fallback="Loading page...">
+    <div v-if="page.status === 'published'" class="max-w-3xl px-6 py-12 mx-auto space-y-8">
       <div class="max-w-3xl px-6 py-12 mx-auto space-y-8">
         <NuxtLink
           class="flex items-center font-bold text-primary-600 hover:text-primary-800 dark:text-primary-400 dark:hover:text-primary-200"
@@ -11,19 +11,19 @@
         </NuxtLink>
         <div class="relative pt-48 pb-10 overflow-hidden shadow-xl rounded-2xl">
           <img
-            v-if="blog_post.image"
+            v-if="page.image"
             class="absolute inset-0 object-cover w-full h-full"
-            :src="fileUrl(blog_post.image)"
+            :src="fileUrl(page.image)"
           />
           <div class="absolute inset-0 bg-primary-500 mix-blend-multiply" />
           <div class="absolute inset-0 bg-gradient-to-t from-primary-600 via-primary-600 opacity-80" />
           <div class="relative px-8">
             <div class="relative text-lg font-medium text-white md:flex-grow">
-              <h1 class="text-6xl font-bold drop-shadow-sm">{{ blog_post.title }}</h1>
+              <h1 class="text-6xl font-bold drop-shadow-sm">{{ page.title }}</h1>
             </div>
           </div>
         </div>
-        <div v-if="blog_post.contentHtml" class="prose dark:prose-invert" v-html="blog_post.contentHtml" />
+        <div v-if="page.contentHtml" class="prose dark:prose-invert" v-html="page.contentHtml" />
       </div>
     </div>
     <div v-else>
@@ -56,18 +56,18 @@ onMounted(async () => {
   } else {
     if (data && data.length > 0) {
       const pageData = data[0]
-      blog_post.value.status = pageData.status
+      page.value.status = pageData.status
 
       if (pageData.status === 'published') {
-        blog_post.value.title = pageData.title
-        blog_post.value.contentHtml = pageData.content
+        page.value.title = pageData.title
+        page.value.contentHtml = pageData.content
         
         if (pageData.image) {
-          blog_post.value.image = pageData.image
+          page.value.image = pageData.image
         }
         
         const md = new MarkdownIt()
-        blog_post.value.contentHtml = md.render(blog_post.value.contentHtml)
+        page.value.contentHtml = md.render(page.value.contentHtml)
       } else {
         // Redirect to the home page
         await navigateTo({ path: '/' })
@@ -80,6 +80,6 @@ onMounted(async () => {
 })
 
 useHead(() => ({
-  title: blog_post.value.title || '',
+  title: page.value.title || '',
 }))
 </script>
