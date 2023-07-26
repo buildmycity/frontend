@@ -86,7 +86,7 @@ const roleOptions = [
   // Add more role options as needed
 ]
 
-const inviteUrl = 'https://buildmy.city/accept-invite'
+const inviteUrl = '##INSERT-INVITE-URL##'
 
 async function sendInvitation() {
   try {
