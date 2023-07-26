@@ -1,3 +1,1 @@
-#BuildMyCity
-
-more details to come!
+Old playground used to learn the sdk and api for directus
